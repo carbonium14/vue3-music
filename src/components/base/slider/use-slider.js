@@ -20,7 +20,7 @@ export default function useSlider(wrapperRef){
         })
     })
     onUnmounted(()=>{
-        slider.value.destory()
+        slider.value.destroy()
     })
     return {
         slider,
