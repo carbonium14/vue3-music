@@ -50,7 +50,7 @@
 
 <script>
 import SongList from '@/components/base/song-list/SongList.vue'
-import Scroll from '@/components/base/scroll/Scroll.vue'
+import Scroll from '@/components/wrap-scroll/index.js'
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
@@ -113,9 +113,12 @@ export default {
           transform:`scale(${scale})translateZ(${translateZ})px`
         }
       })
+      const playList=computed(()=>store.state.playList)
       const scrollStyle=computed(()=>{
+        const bottom=playList.value.length?'60px':'0'
         return {
-          top:`${imageHeight.value}px`
+          top:`${imageHeight.value}px`,
+          bottom
         }
       })
       const filterStyle=computed(()=>{

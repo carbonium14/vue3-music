@@ -38,7 +38,7 @@
 import { onMounted, computed } from 'vue'
 import {getRecommend} from '@/service/recommend.js'
 import Slider from '@/components/base/slider/Slider.vue'
-import Scroll from '@/components/base/scroll/Scroll.vue'
+import Scroll from '@/components/wrap-scroll/index.js'
 import { ref } from 'vue'
 export default {
     name:'RECOMMEND',

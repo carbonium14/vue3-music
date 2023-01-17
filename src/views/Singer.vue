@@ -11,7 +11,7 @@
 
 <script>
 import { getSingerList } from '@/service/singer.js'
-import IndexList from '@/components/base/index-list/IndexList.vue'
+import IndexList from '@/components/index-list/IndexList.vue'
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import storage from 'good-storage'
