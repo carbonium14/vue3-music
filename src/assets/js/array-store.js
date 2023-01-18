@@ -30,3 +30,7 @@ export function remove(key,compare){
 export function load(key){
     return stroage.get(key,[])
 }
+export function clear(key){
+    stroage.remove(key)
+    return []
+}
