@@ -14,6 +14,7 @@
               v-for="item in albums"
               class="item"
               :key="item.id"
+              @click="selectItem(item)"
             >
               <div class="icon">
                 <img width="60" height="60" v-lazy="item.pic">
@@ -31,15 +32,22 @@
         </div>
       </div>
     </scroll>
+    <router-view v-slot="{ Component }">
+        <transition appear name="slide">
+            <component :is="Component" :data="selectedAlbum"></component>
+        </transition>
+    </router-view>
   </div>
 </template>
 
 <script>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed,ref } from 'vue'
 import {getRecommend} from '@/service/recommend.js'
 import Slider from '@/components/base/slider/Slider.vue'
 import Scroll from '@/components/wrap-scroll/index.js'
-import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import storage from 'good-storage'
+import { ALBUM_KEY } from '@/assets/js/constant'
 export default {
     name:'RECOMMEND',
     components:{
@@ -49,6 +57,7 @@ export default {
     setup(){
       const sliders=ref([])
       const albums=ref([])
+      const router=useRouter()
       const loadingText=ref('正在载入...')
       onMounted(async()=>{
         const result=await getRecommend()
@@ -58,11 +67,24 @@ export default {
       const loading=computed(()=>{
         return sliders.value.length===0&&albums.value.length===0
       })
+      const selectedAlbum=ref(null)
+      function selectItem(album){
+        selectedAlbum.value=album
+        cacheAlbum(album)
+        router.push({
+          path:`/recommend/${album.id}`
+        })
+      }
+      function cacheAlbum(album){
+        storage.session.set(ALBUM_KEY,album)
+      }
       return {
         sliders,
         albums,
         loading,
-        loadingText
+        loadingText,
+        selectItem,
+        selectedAlbum
       }
     }
 }

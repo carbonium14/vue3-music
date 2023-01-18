@@ -42,6 +42,7 @@
         <song-list
           :songs="songs"
           @select="selectItem"
+          :rank="rank"
         ></song-list>
       </div>
     </Scroll>
@@ -79,6 +80,9 @@ export default {
         noResultText:{
           type:String,
           default:'没有找到可播放的歌曲'
+        },
+        rank:{
+          type:Boolean
         }
     },
     setup(props){
