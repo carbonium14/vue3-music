@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Recommend from '@/views/Recommend.vue'
-import Singer from '@/views/Singer.vue'
-import TopList from '@/views/TopList.vue'
-import Search from '@/views/Search.vue'
-import SingerDetail from '@/views/SingerDetail.vue'
-import Album from '@/views/Album.vue'
-import TopDetail from '@/views/TopDetail.vue'
-import UserCenter from '@/views/UserCenter.vue'
+const Recommend=()=>import('@/views/Recommend.vue'/* webpackChunkName: "Recommend" */)
+const Singer=()=>import('@/views/Singer.vue'/* webpackChunkName: "Singer" */)
+const TopList=()=>import('@/views/TopList.vue'/* webpackChunkName: "TopList" */)
+const Search=()=>import('@/views/Search.vue'/* webpackChunkName: "Search" */)
+const SingerDetail=()=>import('@/views/SingerDetail.vue'/* webpackChunkName: "SingerDetail" */)
+const Album=()=>import('@/views/Album.vue'/* webpackChunkName: "Album" */)
+const TopDetail=()=>import('@/views/TopDetail.vue'/* webpackChunkName: "TopDetail" */)
+const UserCenter=()=>import('@/views/UserCenter.vue'/* webpackChunkName: "UserCenter" */)
 const routes = [
   {
     path:'/',
