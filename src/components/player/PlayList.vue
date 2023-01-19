@@ -54,6 +54,12 @@
               </li>
             </transition-group>
           </Scroll>
+          <div class="list-add">
+            <div class="add" @click="showAddSong">
+              <i class="icon-add"></i>
+              <span class="text">添加歌曲到队列</span>
+            </div>
+          </div>
           <div class="list-footer" @click="hide">
             <span>关闭</span>
           </div>
@@ -64,6 +70,7 @@
           text="是否清空播放列表？"
           confirm-btn-text="清空"
         ></Confirm>
+        <AddSong ref="addSongRef"></AddSong>
       </div>
     </transition>
   </teleport>
@@ -76,11 +83,13 @@ import { useStore } from 'vuex';
 import useMode from './use-mode';
 import useFavorite from './use-favorite';
 import Confirm from '../base/confirm/Confirm.vue';
+import AddSong from '../add-song/AddSong.vue';
 export default {
     name:'PlayList',
     components:{
         Scroll,
-        Confirm
+        Confirm,
+        AddSong
     },
     setup(){
         const visible=ref(false)
@@ -155,6 +164,10 @@ export default {
         function showConfirm(){
           confirmRef.value.show()
         }
+        const addSongRef=ref(null)
+        function showAddSong(){
+          addSongRef.value.show()
+        }
         return {
             visible,
             playList,
@@ -174,7 +187,9 @@ export default {
             removing,
             confirmClear,
             confirmRef,
-            showConfirm
+            showConfirm,
+            showAddSong,
+            addSongRef
         }
     }
 }

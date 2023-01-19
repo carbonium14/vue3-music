@@ -139,6 +139,7 @@ import Scroll from '@/components/base/scroll/Scroll.vue'
 import useMiddleInteractive from './use-middle-interactive.js'
 import MiniPlayer from './MiniPlayer.vue'
 import useAnimation from './use-animation.js'
+import usePlayHistory from './use-play-history'
 export default {
     name:'PLAYER',
     components:{
@@ -239,12 +240,14 @@ export default {
             audioElement.play()
             store.commit('setPlayingState',true)
         }
+        const {savePlay}=usePlayHistory()
         function ready(){
             if(songReady.value){
                 return
             }
             songReady.value=true
             playLyric()
+            savePlay(currentSong.value)
         }
         const disableClass=computed(()=>{
             return songReady.value?'':'disable'

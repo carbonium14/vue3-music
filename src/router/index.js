@@ -6,6 +6,7 @@ import Search from '@/views/Search.vue'
 import SingerDetail from '@/views/SingerDetail.vue'
 import Album from '@/views/Album.vue'
 import TopDetail from '@/views/TopDetail.vue'
+import UserCenter from '@/views/UserCenter.vue'
 const routes = [
   {
     path:'/',
@@ -43,6 +44,12 @@ const routes = [
       component:SingerDetail
     }]
   },
+  {
+    path:'/user',
+    components:{
+      user:UserCenter
+    }
+  }
 ]
 
 const router = createRouter({

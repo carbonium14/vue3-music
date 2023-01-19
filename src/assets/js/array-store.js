@@ -1,8 +1,11 @@
 import stroage from 'good-storage'
 function insertArray(arr,val,compare,maxLength){
     const index=arr.findIndex(compare)
-    if(index>-1){
+    if(index===0){
         return
+    }
+    if(index>0){
+        arr.splice(index,1)
     }
     arr.unshift(val)
     if(maxLength&&arr.length>maxLength){
@@ -33,4 +36,7 @@ export function load(key){
 export function clear(key){
     stroage.remove(key)
     return []
+}
+export function saveAll(items,key){
+    stroage.set(key,items)
 }
